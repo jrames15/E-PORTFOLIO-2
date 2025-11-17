@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Interactive Portfolio</title>
+    <link rel="stylesheet" href="stylesheet.css">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <!-- LEFT CARD (ABOUT ME) -->
+        <div class="card left-card">
+            <img src="ako_rani.jpg" alt="Your Photo" />
+
+            <h1 class="name">JAMES RHEIN G. MONTON</h1>
+
+            <div class="links">
+                <a href="about_me.html">
+                    <i class="fas fa-user"></i> About Me
+                </a>
+
+                <a href="https://facebook.com/JamesRheinMonton15" target="_blank">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+
+                <a href="https://instagram.com/jramesmonton/" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+
+                <a href="#" onclick="copyNumber()">
+                    <i class="fas fa-phone"></i> 0994 155 6051
+                </a>
+            </div>
+
+            <p id="copyMsg">Number copied!</p>
+        </div>
+
+        <!-- RIGHT CARD (PERFORMANCE) -->
+        <div class="card right-card">
+            <h1>My Coding Performance</h1>
+
+            <div class="skills">
+                <p>HTML <span class="bar"><span style="width: 68%"></span></span></p>
+                <p>CSS <span class="bar"><span style="width: 49%"></span></span></p>
+                <p>JavaScript <span class="bar"><span style="width: 30%"></span></span></p>
+                <p>C++ <span class="bar"><span style="width: 38%"></span></span></p>
+                <p>PHP <span class="bar"><span style="width: 47%"></span></span></p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        function copyNumber() {
+            const number = "0994 155 6051";
+            navigator.clipboard.writeText(number);
+            const msg = document.getElementById("copyMsg");
+            msg.style.opacity = 1;
+            setTimeout(() => msg.style.opacity = 0, 1500);
+        }
+    </script>
+
+</body>
+</html>

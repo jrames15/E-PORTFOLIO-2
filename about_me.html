@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - James Rhein Monton</title>
+
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        body {
+            height: 100vh;
+            background: linear-gradient(120deg, #0011ff, #7a00ff, #ff00aa);
+            background-size: 300% 300%;
+            animation: bgMove 12s infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial;
+            padding: 20px;
+            color: white;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .about-container {
+            width: 90%;
+            max-width: 650px;
+            background: rgba(255,255,255,0.2);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
+            animation: fadeIn 1.5s;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .profile-pic {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px white;
+        }
+
+        .location-pic {
+            width: 260px;
+            height: 160px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 4px solid white;
+            display: block;
+            margin: 15px auto;
+            box-shadow: 0 0 20px rgba(255,255,255,0.6);
+        }
+
+        .food-title {
+            font-size: 22px;
+            margin-top: 25px;
+            text-decoration: underline;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .food-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            text-decoration: none;
+        }
+
+        .food {
+            width: 150px;
+            background: rgba(255,255,255,0.3);
+            padding: 10px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255,255,255,0.4);
+            animation: fadeInUp 1.5s;
+        }
+
+        .food img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid white;
+        }
+
+        .food p {
+            font-size: 16px;
+            margin-top: 8px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 10px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="about-container">
+        <h1>About Me</h1>
+
+        <!-- Profile Picture -->
+        <img src="ako_rani.jpg" class="profile-pic" alt="My Photo">
+
+        <p>
+            Hello! I'm <b>James Rhein Monton</b>.
+        </p>
+
+        <p>
+            I'm <b>17 years old</b> and I currently living in <b> Upper Bagong Silang Balangasan district, Pagadian City</b>.  
+            I love learning new things, especially programming and creating creative projects. I like playing some instruments and painting.
+        </p>
+
+        <!-- Location Picture -->
+        <h2 style="margin-top: 25px;">Where I Live</h2>
+        <img src="location.png" class="location-pic" alt="My Location">
+
+        <!-- Favorite Foods Section -->
+        <div class="food-title">My 3 Favorite Foods</div>
+
+        <div class="food-container">
+
+            <div class="food">
+                <img src="adobo.webp" alt="Food 1">
+                <p>ADOBONG BABOYy</p>
+            </div>
+
+            <div class="food">
+                <img src="menudo.webp" alt="Food 2">
+                <p>MENUDO</p>
+            </div>
+
+            <div class="food">
+                <img src="pancitcanton.webp" alt="Food 3">
+                <p>PANCIT CANTON #1</p>
+            </div>
+
+        </div>
+
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Go Back
+        </a>
+    </div>
+
+</body>
+</html>
