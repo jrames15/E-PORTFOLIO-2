@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Animated Coding Resume — James Monton</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="stylesheet.css">
+
+  <style>
+    /* ------------------ Modern animated resume (single-file) ------------------ */
+    :root{
+      --bg-1: #0f172a; /* dark */
+      --bg-2: #0b1220;
+      --glass: rgba(255,255,255,0.06);
+      --accent: #7c5cff;
+      --accent-2: #00d2ff;
+      --muted: rgba(255,255,255,0.65);
+      --card-radius: 14px;
+      --shadow: 0 10px 30px rgba(2,6,23,0.6);
+      --glass-border: rgba(255,255,255,0.04);
+      color-scheme: dark;
+    }
+
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body,#app{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(120deg,var(--bg-1),var(--bg-2));
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      color: #eaf2ff;
+      padding: 28px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      gap:20px;
+      min-height:100vh;
+    }
+
+    /* animated gradient background */
+    body::before{
+      content:"";
+      position:fixed;inset:0;z-index:-2;
+      background:linear-gradient(45deg, rgba(124,92,255,0.12), rgba(0,210,255,0.08));
+      mix-blend-mode: screen;
+      animation: bgShift 12s linear infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes bgShift{
+      0%{transform:scale(1) rotate(0)}
+      100%{transform:scale(1.08) rotate(6deg)}
+    }
+
+    /* container */
+    .resume-wrap{
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    .main {
+        margin-top: 60px;
+    }
+
+    /* left column */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--card-radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--glass-border);
+      backdrop-filter: blur(6px) saturate(120%);
+      margin: auto;
+    }
+
+    .profile{
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .avatar{
+      width:120px;height:120px;border-radius:50%;
+      margin:0 auto 14px;display:block;
+      border:4px solid rgba(255,255,255,0.08);
+      object-fit:cover;
+      transform:translateY(-10px);
+      animation: avatarDrop .9s cubic-bezier(.2,.9,.3,1) forwards;
+      opacity:0;
+    }
+    @keyframes avatarDrop{to{opacity:1;transform:translateY(0)}}
+
+    .name{
+      font-weight:700;font-size:1.15rem;letter-spacing:0.6px;
+      margin-bottom:6px;
+      text-transform:uppercase;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+      opacity:0;transform:translateY(8px);
+      animation:namePop .9s .15s ease forwards;
+    }
+    @keyframes namePop{to{opacity:1;transform:translateY(0)}}
+
+    .role{color:var(--muted);font-size:0.86rem;margin-bottom:14px}
+
+    .contact{display:flex;flex-direction:column;gap:8px;text-align:left;color:var(--muted);font-size:0.9rem}
+    .contact a{color:var(--muted);text-decoration:none}
+    .contact i{width:18px;text-align:center;margin-right:6px;color:var(--accent)}
+
+    hr.sep{margin:16px 0;border:none;border-top:1px solid rgba(255,255,255,0.04)}
+
+    /* skill bars */
+    .skills{display:flex;flex-direction:column;gap:10px}
+    .skill{display:flex;align-items:center;justify-content:space-between}
+    .skill .label{font-size:0.9rem;color:var(--muted)}
+    .skill .bar-wrap{flex:1;height:10px;background:rgba(255,255,255,0.04);border-radius:8px;margin-left:12px;margin-right:8px;overflow:hidden}
+    .skill .bar{height:100%;border-radius:8px;transform:translateX(-100%);opacity:0}
+
+    /* animated skill colors */
+    .bar--html{background:linear-gradient(90deg,#f16529,#ffb86b)}
+    .bar--css{background:linear-gradient(90deg,#2965f1,#7c5cff)}
+    .bar--js{background:linear-gradient(90deg,#f0db4f,#f7c948)}
+    .bar--php{background:linear-gradient(90deg,#8892bf,#6f8ad9)}
+
+    /* right column */
+    .main{
+      display:flex;flex-direction:column;gap:18px
+    }
+
+    .panel{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border);box-shadow:var(--shadow)}
+
+    .headline{display:flex;align-items:center;gap:14px}
+    .headline h2{font-size:1.05rem;margin:0}
+    .badge{padding:6px 10px;border-radius:999px;font-size:0.8rem;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021;box-shadow:0 6px 18px rgba(124,92,255,0.12)}
+
+    /* timeline */
+    .timeline{display:flex;flex-direction:column;gap:14px}
+    .item{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start}
+    .item .time{font-size:0.82rem;color:var(--muted)}
+    .item .content h3{margin-bottom:6px;font-size:0.95rem}
+    .item .content p{color:var(--muted);font-size:0.9rem}
+
+    /* Projects grid */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .project{padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+    .project h4{margin-bottom:8px}
+    .project p{color:var(--muted);font-size:0.9rem}
+
+    /* utilities */
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.03);padding:6px 9px;border-radius:999px;font-size:0.8rem;color:var(--muted)}
+    .ghost-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+    /* header top bar inside right panel */
+    .top-actions{display:flex;gap:10px;margin-left:auto}
+
+    /* small animation on load */
+    .panel{opacity:0;transform:translateY(18px);animation:panelIn .6s .25s ease forwards}
+    @keyframes panelIn{to{opacity:1;transform:translateY(0)}}
+
+    /* animate bars after enter */
+    .bar.animate{opacity:1;transform:translateX(0);transition:transform 1.1s cubic-bezier(.2,.9,.2,1)}
+
+    /* theme toggle */
+    .theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+
+    /* responsive */
+    @media (max-width:880px){
+      .resume-wrap{grid-template-columns:1fr;max-width:760px}
+      .avatar{width:100px;height:100px}
+    }
+
+    /* print friendly */
+    @media print{
+      body{background:white;color:black}
+      .resume-wrap{box-shadow:none}
+    }
+
+    /* little floating accent */
+    .accent-blob{position:absolute;right:-36px;top:-36px;width:140px;height:140px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2));filter:blur(32px);opacity:0.12;pointer-events:none}
+
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+    <a href="/index.html" class="brand">JAMES MONTON</a>
+
+    <ul class="nav-menu">
+        <li><a href="/portfolio/index.html" class="nav-link">HOME</a></li>
+        <li><a href="/pages/preface/preface.html" class="nav-link">PREFACE</a></li>
+        <li><a href="#" class="nav-link">WORK IMMERSION</a></li>
+        <li><a href="#" class="nav-link">SIS</a></li>
+    </ul>
+
+    <div class="more-dropdown">
+        <button id="moreBtn" class="more-btn">More ▼</button>
+        <div id="dropdownMenu" class="dropdown-menu">
+            <a href="#" class="dropdown-item">RESUME</a>
+            <a href="#" class="dropdown-item">APPLICATION</a>
+            <a href="#" class="dropdown-item">JOB INTERVIEW</a>
+            <a href="#" class="dropdown-item">COMPANY RULES</a>
+            <a href="#" class="dropdown-item">WORK IMMERSION TASK</a>
+            <a href="#" class="dropdown-item">DTR</a>
+            <a href="#" class="dropdown-item">PERSONAL T1</a>
+            <a href="#" class="dropdown-item">UPDATED RESUME</a>
+            <a href="#" class="dropdown-item">WORK IMMERSION HIGHLIGHT</a>
+            <a href="#" class="dropdown-item">REFLECTION</a>
+            <a href="#" class="dropdown-item">PHOTO COLLAGE</a>
+            <a href="#" class="dropdown-item">CERTIFICATE</a>
+            <a href="#" class="dropdown-item">REMARKS</a>
+        </div>
+    </div>
+
+    <div id="hamburger" class="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+
+
+  <div id="app" class="resume-wrap">
+
+    <!-- LEFT: PROFILE / SKILLS -->
+    <aside class="card">
+      <div class="profile">
+        <div class="accent-blob" aria-hidden></div>
+        <!-- replace src with your photo path -->
+        <img class="avatar" src="/portfolio/assets/images/ako_rani.jpg" alt="James Monton" />
+        <div class="name">James Rhein G. Monton</div>
+        <div class="role">Front-End Developer & Student</div>
+
+        <div class="contact" style="margin-top:10px">
+          <div><i class="fas fa-phone"></i> <a href="#" onclick="copyNumber(event)">0994 155 6051</a></div>
+          <div><i class="fas fa-envelope"></i> <a href="mailto:jamesrheinm@gmail.com">jamesrheinm@gmail.com</a></div>
+          <div><i class="fab fa-github"></i> <a href="#">github.com/yourhandle</a></div>
+          <div><i class="fab fa-facebook"></i> <a href="https://facebook.com/JamesRheinMonton15" target="_blank">facebook.com/JamesRheinMonton15</a></div>
+        </div>
+
+        <hr class="sep" />
+
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+          <strong style="font-size:0.9rem">Skills</strong>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span></div>
+        </div>
+
+        <div class="skills" style="margin-top:12px">
+          <div class="skill"><div class="label">HTML</div><div class="bar-wrap"><div class="bar bar--html" data-width="92%"></div></div><div class="label">92%</div></div>
+          <div class="skill"><div class="label">CSS</div><div class="bar-wrap"><div class="bar bar--css" data-width="85%"></div></div><div class="label">85%</div></div>
+          <div class="skill"><div class="label">JavaScript</div><div class="bar-wrap"><div class="bar bar--js" data-width="72%"></div></div><div class="label">72%</div></div>
+          <div class="skill"><div class="label">PHP</div><div class="bar-wrap"><div class="bar bar--php" data-width="60%"></div></div><div class="label">60%</div></div>
+        </div>
+
+        <hr class="sep" />
+
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:8px">
+          <button class="ghost-btn" onclick="downloadResume()"><i class="fas fa-download"></i> Download</button>
+          <button class="ghost-btn" onclick="printResume()"><i class="fas fa-print"></i> Print</button>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- RIGHT: MAIN CONTENT -->
+    <main class="main">
+
+      <section class="panel">
+        <div class="headline">
+          <h2>About Me</h2>
+          <div class="top-actions">
+            <div class="theme-toggle" id="themeToggle" title="Toggle animated theme">🌙 Theme</div>
+          </div>
+        </div>
+        <p style="color:var(--muted);margin-top:10px;font-size:0.95rem">I build interactive, accessible, and beautiful interfaces. I enjoy turning ideas into real experiences using modern HTML, CSS, and JavaScript. Currently learning more in backend and system-level C++.</p>
+      </section>
+
+      <section class="panel">
+        <div class="headline"><h2>Experience</h2><span class="badge">Intern</span></div>
+        <div class="timeline" style="margin-top:10px">
+          <div class="item">
+            <div class="time">2024 — Present</div>
+            <div class="content"><h3>Work Immersion (Company)</h3><p>Front-end tasks, small UI enhancements, internal tools, and documentation.</p></div>
+          </div>
+
+          <div class="item">
+            <div class="time">2023</div>
+            <div class="content"><h3>College Projects</h3><p>Built interactive portfolio, group tasks and web apps using HTML/CSS/JS and basic PHP.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="headline"><h2>Projects</h2><span class="badge">Selected</span></div>
+        <div class="projects" style="margin-top:12px">
+          <article class="project">
+            <h4>Interactive Portfolio</h4>
+            <p>Single-page portfolio with animated header, responsive layout, and downloadable resume.</p>
+          </article>
+          <article class="project">
+            <h4>Mini E-Shop (School)</h4>
+            <p>Simple product listing and cart using localStorage for session state.</p>
+          </article>
+          <article class="project">
+            <h4>Game UI (JS)</h4>
+            <p>Small UI/UX for a browser-based game; implemented touch and gyroscope controls.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="headline"><h2>Education</h2></div>
+        <div style="margin-top:10px;color:var(--muted)">
+          <strong>Senior High School — ICT Strand</strong>
+          <div style="font-size:0.92rem;color:var(--muted);margin-top:6px">Relevant coursework: Web Development, Programming, Computer Systems</div>
+        </div>
+      </section>
+
+      <section class="panel" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <div>
+          <h3 style="margin:0 0 8px 0">Contact</h3>
+          <div style="color:var(--muted)">Available for internships, freelance, and collaborations. Reach me via Facebook or email.</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:700">Want a tailored resume?</div>
+          <div style="color:var(--muted);font-size:0.9rem">Tell me what job or internship you're applying for and I'll customise it.</div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script>
+    // Animate skill bars on load (uses data-width attribute)
+    window.addEventListener('DOMContentLoaded', ()=>{
+      const bars = document.querySelectorAll('.bar');
+      bars.forEach((b,i)=>{
+        const w = b.getAttribute('data-width') || '70%';
+        // delay for a staggered effect
+        setTimeout(()=>{
+          b.style.width = w;
+          b.classList.add('animate');
+        }, 300 + i*180);
+      });
+
+      // Add small floating accent when you hover the profile
+      const profile = document.querySelector('.profile');
+      profile.addEventListener('mousemove', (e)=>{
+        const blob = profile.querySelector('.accent-blob');
+        const rect = profile.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width/2;
+        const y = e.clientY - rect.top - rect.height/2;
+        blob.style.transform = `translate(${x*0.08}px, ${y*0.08}px)`;
+      });
+
+    });
+
+    // Copy phone number
+    function copyNumber(e){
+      e && e.preventDefault();
+      navigator.clipboard && navigator.clipboard.writeText('09941556051').then(()=>{
+        alert('Phone number copied to clipboard');
+      }).catch(()=>{alert('Copy failed — select and copy manually')});
+    }
+
+    // Theme toggle simple example (switches accent colors)
+    const themeToggle = document.getElementById('themeToggle');
+    let dark = true;
+    themeToggle.addEventListener('click', ()=>{
+      dark = !dark;
+      if(!dark){
+        document.documentElement.style.setProperty('--accent','#00ddbb');
+        document.documentElement.style.setProperty('--accent-2','#66ffb0');
+        themeToggle.textContent = '☀️ Theme';
+      } else {
+        document.documentElement.style.setProperty('--accent','#7c5cff');
+        document.documentElement.style.setProperty('--accent-2','#00d2ff');
+        themeToggle.textContent = '🌙 Theme';
+      }
+    });
+
+    // Download: create a printable HTML blob
+    function downloadResume(){
+      const html = `<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Resume</title></head><body>${document.getElementById('app').outerHTML}</body></html>`;
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'resume.html'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+    function printResume(){ window.print(); }
+
+  </script>
+</body>
+</html>
