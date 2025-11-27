@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Animated Coding Resume — James Monton</title>
+  <title>My Resume</title>
 
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -194,14 +194,14 @@
     <ul class="nav-menu">
         <li><a href="/portfolio/index.html" class="nav-link">HOME</a></li>
         <li><a href="/pages/preface/preface.html" class="nav-link">PREFACE</a></li>
-        <li><a href="#" class="nav-link">WORK IMMERSION</a></li>
+        <li><a href="/portfolio/work_im.html" class="nav-link">WORK IMMERSION</a></li>
         <li><a href="#" class="nav-link">SIS</a></li>
     </ul>
 
     <div class="more-dropdown">
         <button id="moreBtn" class="more-btn">More ▼</button>
         <div id="dropdownMenu" class="dropdown-menu">
-            <a href="#" class="dropdown-item">RESUME</a>
+            <a href="/portfolio/resume.html" class="dropdown-item">RESUME</a>
             <a href="#" class="dropdown-item">APPLICATION</a>
             <a href="#" class="dropdown-item">JOB INTERVIEW</a>
             <a href="#" class="dropdown-item">COMPANY RULES</a>
@@ -239,7 +239,7 @@
           <div><i class="fas fa-phone"></i> <a href="#" onclick="copyNumber(event)">0994 155 6051</a></div>
           <div><i class="fas fa-envelope"></i> <a href="mailto:jamesrheinm@gmail.com">jamesrheinm@gmail.com</a></div>
           <div><i class="fab fa-github"></i> <a href="#">github.com/yourhandle</a></div>
-          <div><i class="fab fa-facebook"></i> <a href="https://facebook.com/JamesRheinMonton15" target="_blank">facebook.com/JamesRheinMonton15</a></div>
+          <div><i class="fab fa-facebook"></i> <a href="https://facebook.com/JamesRheinMonton15" target="_blank">facebook</a></div>
         </div>
 
         <hr class="sep" />
@@ -250,10 +250,10 @@
         </div>
 
         <div class="skills" style="margin-top:12px">
-          <div class="skill"><div class="label">HTML</div><div class="bar-wrap"><div class="bar bar--html" data-width="92%"></div></div><div class="label">92%</div></div>
-          <div class="skill"><div class="label">CSS</div><div class="bar-wrap"><div class="bar bar--css" data-width="85%"></div></div><div class="label">85%</div></div>
-          <div class="skill"><div class="label">JavaScript</div><div class="bar-wrap"><div class="bar bar--js" data-width="72%"></div></div><div class="label">72%</div></div>
-          <div class="skill"><div class="label">PHP</div><div class="bar-wrap"><div class="bar bar--php" data-width="60%"></div></div><div class="label">60%</div></div>
+          <div class="skill"><div class="label">HTML</div><div class="bar-wrap"><div class="bar bar--html" data-width="72%"></div></div><div class="label">72%</div></div>
+          <div class="skill"><div class="label">CSS</div><div class="bar-wrap"><div class="bar bar--css" data-width="65%"></div></div><div class="label">65%</div></div>
+          <div class="skill"><div class="label">JavaScript</div><div class="bar-wrap"><div class="bar bar--js" data-width="32%"></div></div><div class="label">32%</div></div>
+          <div class="skill"><div class="label">PHP</div><div class="bar-wrap"><div class="bar bar--php" data-width="50%"></div></div><div class="label">50%</div></div>
         </div>
 
         <hr class="sep" />
@@ -336,6 +336,47 @@
   </div>
 
   <script>
+  /*for my buttons on the left side*/
+  const home = document.getElementById("show-home");
+  const homeNoti = document.getElementById("notification1");
+
+  const moreBtn = document.getElementById("moreBtn");
+  const dropdownMenu = document.getElementById("dropdownMenu");
+
+  const mobileMoreHeader = document.getElementById("mobileMoreHeader");
+  const mobileMoreItems = document.getElementById("mobileMoreItems");
+
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const closeMenu = document.getElementById("closeMenu");
+
+  /* HAMBURGER TOGGLE */
+  hamburger?.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active");
+  });
+
+  /* DESKTOP DROPDOWN */
+  moreBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdownMenu.classList.toggle("active");
+  });
+
+  /* CLOSE WHEN CLICK OUTSIDE */
+  document.addEventListener("click", (e) => {
+    if (!moreBtn?.contains(e.target)) {
+      dropdownMenu?.classList.remove("active");
+    }
+  });
+
+  /* MOBILE NAV MENU */
+  hamburger?.addEventListener("click", () => {
+    mobileMenu.classList.add("show");
+  });
+
+  closeMenu?.addEventListener("click", () => {
+    mobileMenu.classList.remove("show");
+  });
+
     // Animate skill bars on load (uses data-width attribute)
     window.addEventListener('DOMContentLoaded', ()=>{
       const bars = document.querySelectorAll('.bar');
