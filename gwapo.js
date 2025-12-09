@@ -1,4 +1,4 @@
-  function copyNumber() {
+function copyNumber() {
             const number = "0994 155 6051";
             navigator.clipboard.writeText(number);
             const msg = document.getElementById("copyMsg");
@@ -40,9 +40,9 @@ const home = document.getElementById("show-home");
 
   /* MOBILE NAV MENU */
   hamburger?.addEventListener("click", () => {
-    mobileMenu.classList.add("show");
+    mobileMenu?.classList.add("show");
   });
 
   closeMenu?.addEventListener("click", () => {
-    mobileMenu.classList.remove("show");
+    mobileMenu?.classList.remove("show");
   });
